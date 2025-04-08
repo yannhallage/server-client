@@ -1,12 +1,39 @@
-# React + Vite
+# shadcn
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
+shadcn is a modern UI component library designed to help developers build beautiful and responsive user interfaces quickly and efficiently. It provides a set of customizable components that can be easily integrated into your projects.
 
-Currently, two official plugins are available:
+## Installation
+To install shadcn, you can use npm or yarn:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install shadcn
+```
+or
+```bash
+yarn add shadcn
+```
 
-## Expanding the ESLint configuration
+## Usage
+To use shadcn components in your project, import them as follows:
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```javascript
+import { Button } from 'shadcn';
+
+function App() {
+  return (
+    <Button onClick={() => alert('Hello, shadcn!')}>Click Me</Button>
+  );
+}
+```
+
+## Dependencies
+- React
+- Tailwind CSS
+
+## Additional Resources
+- [Documentation](https://shadcn.dev/docs)
+- [GitHub Repository](https://github.com/shadcn/shadcn)
+
+## License
+This project is licensed under the MIT License.
