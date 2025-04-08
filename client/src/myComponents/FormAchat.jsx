@@ -59,12 +59,12 @@ const FormAchat = () => {
             matricule: values.matricule
         };
 
+
+
         // envoie la requete au server 
         try {
             const response = await axios.post('http://localhost:3000/api/personnel', valeurEnvoyers)
-           
-            setDataValue((prevData) => [...prevData, response.data]);
-
+        
             console.log("Donnée insérée avec succès:", response.data);
 
             valeurEnvoyers = {
@@ -86,7 +86,7 @@ const FormAchat = () => {
     };
 
 
-
+    // vider les champs
     const EmptyFields = () => {
         const values = Object.keys(placeholder).reduce((acc, key) => {
             const value = inputRef.current[key].value = ''

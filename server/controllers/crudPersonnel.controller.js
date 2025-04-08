@@ -16,8 +16,7 @@ const PostPersonnel = async (req, res) => {
 
 
         res.status(201).json({
-            message: " message du server => Le personnel a été créé avec succès!",
-            // data: personnel 
+            message: " message du server => Le personnel a été créé avec succès!", 
         });
 
     } catch (error) {
