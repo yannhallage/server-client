@@ -8,15 +8,16 @@ import { Button } from "@/components/ui/button.tsx";
 import { useContext, useEffect, useRef, useState } from "react";
 import Toaster from '@/components/ui/toaster.tsx'
 import { Context } from "../../context/apiContext";
+import Notifications from "./Notification";
 
 
 const FormAchat = () => {
     const { addAchat, achats } = useContext(Context);
     const [variableAdd,setVariableAdd] = useState(0)
     const [placeholder] = useState({
-        nameProduit: "Nom du produit",
-        quantiteProduit: "Quantité",
-        prixProduit: "Prix",
+        nameProduit: "Nom et prenom",
+        quantiteProduit: "address mail",
+        prixProduit: "telephone",
     });
     const { toast } = useToast()
     const [afficheToats, setAfficheToats] = useState(false)
@@ -58,8 +59,7 @@ const FormAchat = () => {
     
         // Ajouter les données au tableau
         setDataValue([...dataValue, valeurEnvoyers]);
-    
-        // Réinitialisation des champs
+
     };
     
     
@@ -73,7 +73,7 @@ const FormAchat = () => {
     return (
         <section className="p-5">
             <div className="space-y-7">
-                <span className="md:text-4xl text-xl font-bold">Achats d'article</span>
+                <span className="md:text-4xl text-xl font-bold">Ajouter un utilisateur</span>
                 {/* Formulaire */}
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-2 space-x-6">
                     <div className="space-y-3">
@@ -109,10 +109,10 @@ const DivPagnet = () => {
     return (
         <div className="space-y-5">
             <div>
-                <span className="text-xl font-bold">Pagnets</span>
+                <span className="text-xl font-bold">Notifications</span>
             </div>
             <div>
-                <CardWithForm />
+                <Notifications />
             </div>
         </div>
     );
