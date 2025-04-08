@@ -18,6 +18,7 @@ const FormAchat = () => {
         nameProduit: "Nom et prenom",
         quantiteProduit: "address mail",
         prixProduit: "telephone",
+        matricule : "matricule"
     });
     const { toast } = useToast()
     const [afficheToats, setAfficheToats] = useState(false)
