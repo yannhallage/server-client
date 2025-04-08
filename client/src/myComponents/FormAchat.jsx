@@ -7,19 +7,21 @@ import CardWithForm from "./cardWithForm";
 import { Button } from "@/components/ui/button.tsx";
 import { useContext, useEffect, useRef, useState } from "react";
 import Toaster from '@/components/ui/toaster.tsx'
-import { Context } from "../../context/apiContext";
+import { Context } from '../context/apiContext'
 import Notifications from "./Notification";
-
+import axios from "axios";
 
 const FormAchat = () => {
     const { addAchat, achats } = useContext(Context);
-    const [variableAdd,setVariableAdd] = useState(0)
+    const [variableAdd, setVariableAdd] = useState(0)
+
     const [placeholder] = useState({
-        nameProduit: "Nom et prenom",
-        quantiteProduit: "address mail",
-        prixProduit: "telephone",
-        matricule : "matricule"
+        name: "Nom et prenom",
+        email: "address mail",
+        telephone: "telephone",
+        matricule: "matricule"
     });
+
     const { toast } = useToast()
     const [afficheToats, setAfficheToats] = useState(false)
     const [dataValue, setDataValue] = useState([])
@@ -27,7 +29,8 @@ const FormAchat = () => {
 
     const inputRef = useRef({});
 
-    const handleClick = () => {
+    const handleClick = async () => {
+
         const emptyFields = [];
         const values = Object.keys(placeholder).reduce((acc, key) => {
             const value = inputRef.current[key]?.value.trim(); // Trim pour éviter les espaces vides
@@ -38,7 +41,7 @@ const FormAchat = () => {
             }
             return acc;
         }, {});
-    
+
         if (emptyFields.length > 0) {
             setAfficheToats(true);
             toast({
@@ -47,23 +50,42 @@ const FormAchat = () => {
             });
             EmptyFields();
             return;
-        } 
-    
-        const valeurEnvoyers = {
-            nameProduit: values.nameProduit,
-            quantiteProduit: values.quantiteProduit,
-            prixProduit: parseInt(values.prixProduit)
+        }
+
+        let valeurEnvoyers = {
+            name: values.name,
+            email: values.email,
+            telephone: parseInt(values.telephone),
+            matricule: values.matricule
         };
-    
-        // Mise à jour correcte de la valeur totale
-        setValeurTotal((prevTotal) => prevTotal + valeurEnvoyers.prixProduit);
-    
-        // Ajouter les données au tableau
-        setDataValue([...dataValue, valeurEnvoyers]);
+
+        // envoie la requete au server 
+        try {
+            const response = await axios.post('http://localhost:3000/api/personnel', valeurEnvoyers)
+           
+            setDataValue((prevData) => [...prevData, response.data]);
+
+            console.log("Donnée insérée avec succès:", response.data);
+
+            valeurEnvoyers = {
+                name: '',
+                email: '',
+                telephone: '',
+                matricule: ''
+            };
+            toast({
+                variant: "destructive",
+                description: "Le personnel a été créé avec succès!",
+            });
+            EmptyFields();
+        }
+        catch (error) {
+            console.error("Erreur lors de l'insertion des données:", error);
+        }
 
     };
-    
-    
+
+
 
     const EmptyFields = () => {
         const values = Object.keys(placeholder).reduce((acc, key) => {
@@ -71,6 +93,8 @@ const FormAchat = () => {
         }, {});
         return;
     }
+
+
     return (
         <section className="p-5">
             <div className="space-y-7">
@@ -91,7 +115,7 @@ const FormAchat = () => {
                         </div>
                         <div>
                             <ScrollAreaDemo
-                                children={dataValue}
+                                
                             />
                         </div>
                     </div>

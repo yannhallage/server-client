@@ -4,27 +4,26 @@ import { Separator } from "@/components/ui/separator";
 import TooltipDemo from "./TooltipDemo";
 import DialogDemo from "./DialogDemo";
 import AlertDialogDemo from "./AlertDialogDemo";
-import { Context } from "../../context/apiContext"; 
+import { Context } from "../context/apiContext"; 
 import { useContext,useState,useEffect } from "react"; 
 
-const ScrollAreaDemo = ({ children }) => {
-  const { apiData, setApiData } = useContext(Context);
-  if (children){
-    console.log(children)
-  }
+const ScrollAreaDemo = () => {
+  // const { apiData, setApiData } = useContext(Context);
+
   return (
     <ScrollArea className="h-72 w-full rounded-md border">
       <div className="p-4">
         <h4 className="mb-4 text-sm font-medium leading-none">Lister tout les utilisateurs</h4>
-        {
+        <DivMessage />
+        {/* {
           children.length == 0 ? (
             <DivMessage />
           ) :
           children.map((tag, index) => (
               <React.Fragment key={index}>
                 <div className="text-sm flex justify-between items-center">
-                  <span className="mr-2">{tag.nameProduit}</span>
-                  <span className="mr-2"> {tag.quantiteProduit} , {tag.prixProduit}</span>
+                  <span className="mr-2"></span>
+                  <span className="mr-2"> </span>
                   <div className="flex space-x-2">
                     <DialogDemo />
                     <AlertDialogDemo />
@@ -33,7 +32,7 @@ const ScrollAreaDemo = ({ children }) => {
                 <Separator className="my-2" />
               </React.Fragment>
             ))
-        }
+        } */}
       </div>
     </ScrollArea>
   );

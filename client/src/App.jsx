@@ -6,7 +6,7 @@ import FormAchat from './myComponents/FormAchat'
 import AvatarDemo from './myComponents/AvatarDemo'
 import { SheetDemo } from './myComponents/SheetDemo'
 import PopoverDemo from './myComponents/PopoverDemo'
-import { Context } from '../context/apiContext'
+import { Context } from './context/apiContext'
 
 function App() {
 

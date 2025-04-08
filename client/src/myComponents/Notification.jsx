@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import TooltipDemo from "./TooltipDemo";
 import DialogDemo from "./DialogDemo";
 import AlertDialogDemo from "./AlertDialogDemo";
-import { Context } from "../../context/apiContext"; 
+import { Context } from "../context/apiContext"; 
 import { useContext,useState,useEffect } from "react"; 
 
 const Notifications = () => {
