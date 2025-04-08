@@ -1,14 +1,31 @@
 const express = require('express')
 const route = express.Router()
+const {
+    GetPersonnel,
+    GetPersonnels,
+    PostPersonnel,
+    DeletePersonnel,
+    UpdatePersonnel
+} = require('../controllers/crudPersonnel.controller')
 
-// recuperation du models
-const Personnels = require('../models/User')
 
 
-// dans le cas d'une creation 
-// route.post('/')
+// cas d'un get 
+route.get('/', GetPersonnels)
+
+// recuperation en fonction de l'id 
+route.get('/:id', GetPersonnel)
+
+// // dans le cas d'une creation 
+route.post('/',PostPersonnel)
+
+// // dans le cas d'une mise a jour
+route.put('/:id',UpdatePersonnel)
+
+// // dans le cas d'une suppression
+route.delete('/:id',DeletePersonnel)
 
 
-module.exports ={
-    route
-}
+
+
+module.exports = route

@@ -79,7 +79,7 @@ const DeletePersonnel = async (req, res) => {
 const UpdatePersonnel = async (req, res) => {
     try {
         const { id } = req.params
-        const personnel = await Personnels.findByIdAndUpdate(id)
+        const personnel = await Personnels.findByIdAndUpdate(id, req.body, {new :true})
 
         if (!personnel) {
             return res.status(404).json({
