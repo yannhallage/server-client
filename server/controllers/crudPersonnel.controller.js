@@ -111,11 +111,24 @@ const UpdatePersonnel = async (req, res) => {
     }
 }
 
+const DeletAllPersonnel = async (req ,res) => {
+    try {
+        const personnel = await Personnels.deleteMany({})
+        res.status(200).json({
+            message: "tous les personnel ont ete supprime avec succes"
+        })
+    }catch (error){
+        res.status(500).json({
+            message: "une erreur est survenue lors de la suppression de tous les personnel"
+        })
+    }
+}
 // exports
 module.exports = {
     GetPersonnel,
     GetPersonnels,
     PostPersonnel,
     DeletePersonnel,
-    UpdatePersonnel
+    UpdatePersonnel,
+    DeletAllPersonnel
 }

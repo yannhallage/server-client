@@ -25,8 +25,6 @@ const FormAchat = () => {
 
     const { toast } = useToast()
     const [afficheToats, setAfficheToats] = useState(false)
-    const [dataValue, setDataValue] = useState([])
-    const [valeurTotal, setValeurTotal] = useState(0)
 
     const inputRef = useRef({});
 
@@ -89,8 +87,7 @@ const FormAchat = () => {
             const response = await axios.post('http://localhost:3000/api/notification', {
                 message: "vous avez crée un utilisateur !"
             });
-            
-            console.log("Donnée insérée avec succès:", response.data);
+            // console.log("Donnée insérée avec succès:", response.data);
 
         } catch (error) {
             console.error("Erreur lors de l'insertion des données:", error);

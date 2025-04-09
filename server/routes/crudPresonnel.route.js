@@ -5,7 +5,8 @@ const {
     GetPersonnels,
     PostPersonnel,
     DeletePersonnel,
-    UpdatePersonnel
+    UpdatePersonnel,
+    DeletAllPersonnel
 } = require('../controllers/crudPersonnel.controller')
 
 
@@ -25,6 +26,8 @@ route.put('/:id',UpdatePersonnel)
 // // dans le cas d'une suppression
 route.delete('/:id',DeletePersonnel)
 
+// cas de suppression all data
+route.delete('/',DeletAllPersonnel)
 
 
 

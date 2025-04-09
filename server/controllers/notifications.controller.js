@@ -22,7 +22,7 @@ const PostNotification = async (req, res) => {
     try {
         // const { message } = req.body
         const notification = await Notifications.create(req.body)
-        const io  = req.app.get('io')
+        const io = req.app.get('io')
 
         io.emit("newNotification", notification);
 
@@ -32,7 +32,24 @@ const PostNotification = async (req, res) => {
     }
 }
 
+const DeleteAllNotification = async (req, res) => {
+
+    try {
+        const notification = await Notifications.deleteMany({})
+        res.status(200).json({
+            message: 'toutes les notifications ont été supprimées avec succès',
+        })
+
+    }
+    catch (error) {
+        res.status(500).json({
+            message: 'erreur de serveur',
+        })
+
+    }
+}
 module.exports = {
     GetNotifications,
-    PostNotification
+    PostNotification,
+    DeleteAllNotification
 }
