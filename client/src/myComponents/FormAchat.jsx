@@ -61,8 +61,7 @@ const FormAchat = () => {
         };
 
 
-
-        // envoie la requete au server 
+        // post sur personnal
         try {
             const response = await axios.post('http://localhost:3000/api/personnel', valeurEnvoyers)
 
@@ -84,6 +83,18 @@ const FormAchat = () => {
             console.error("Erreur lors de l'insertion des données:", error);
         }
 
+        // post sur notification
+        try {
+
+            const response = await axios.post('http://localhost:3000/api/notification', {
+                message: "vous avez crée un utilisateur !"
+            });
+            
+            console.log("Donnée insérée avec succès:", response.data);
+
+        } catch (error) {
+            console.error("Erreur lors de l'insertion des données:", error);
+        }
     };
 
 

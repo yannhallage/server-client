@@ -25,6 +25,7 @@ const ScrollAreaDemo = () => {
         }
         return prev;
       });
+      
     });
 
     // Charger les utilisateurs via l'API GET

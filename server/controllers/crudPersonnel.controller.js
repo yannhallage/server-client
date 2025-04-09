@@ -15,8 +15,7 @@ const PostPersonnel = async (req, res) => {
         const io = req.app.get('io')
 
         io.emit("newUser", personnel);
-
-
+        
         res.status(201).json({
             message: " message du server => Le personnel a été créé avec succès!", 
         });
