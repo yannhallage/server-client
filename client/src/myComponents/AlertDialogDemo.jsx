@@ -31,7 +31,7 @@ const AlertDialogDemo = () => {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction>Continue</AlertDialogAction>
+                    <Button variant="destructive">Continue</Button>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

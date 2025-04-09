@@ -1,6 +1,5 @@
 const Personnels = require('../models/personnel.model')
 
-
 const PostPersonnel = async (req, res) => {
     try {
 
@@ -13,12 +12,15 @@ const PostPersonnel = async (req, res) => {
         }
 
         const personnel = await Personnels.create(req.body);
+        const io = req.app.get('io')
+
+        io.emit("newUser", personnel);
 
 
         res.status(201).json({
             message: " message du server => Le personnel a été créé avec succès!", 
         });
-
+        
     } catch (error) {
         console.error("Erreur lors de la création du personnel:", error);
 

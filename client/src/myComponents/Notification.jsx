@@ -20,7 +20,7 @@ const Notifications = () => {
   return (
     <ScrollArea className="h-72 w-full rounded-md border">
       <div className="p-4">
-        <h4 className="mb-4 text-sm font-medium leading-none">Notifications</h4>
+        <h4 className="mb-4 text-sm font-medium leading-none">Notifications <span className="bg-black text-white rounded-full">0</span></h4>
         {
             Notification.length == 0 ? (
                 <DivMessage />

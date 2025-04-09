@@ -9,6 +9,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import Toaster from '@/components/ui/toaster.tsx'
 import { Context } from '../context/apiContext'
 import Notifications from "./Notification";
+
 import axios from "axios";
 
 const FormAchat = () => {
@@ -64,7 +65,7 @@ const FormAchat = () => {
         // envoie la requete au server 
         try {
             const response = await axios.post('http://localhost:3000/api/personnel', valeurEnvoyers)
-        
+
             console.log("Donnée insérée avec succès:", response.data);
 
             valeurEnvoyers = {
@@ -93,8 +94,6 @@ const FormAchat = () => {
         }, {});
         return;
     }
-
-
     return (
         <section className="p-5">
             <div className="space-y-7">
@@ -115,7 +114,7 @@ const FormAchat = () => {
                         </div>
                         <div>
                             <ScrollAreaDemo
-                                
+
                             />
                         </div>
                     </div>
