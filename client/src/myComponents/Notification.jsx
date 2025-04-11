@@ -75,7 +75,7 @@ const DivMessage = () => {
   return (
     <div className="text-center font-bold text-[#ccc] mt-11">
       {
-        "Aucune notifications pour le moment "
+        "Aucunes notifications pour le moment "
       }
     </div>
   )
