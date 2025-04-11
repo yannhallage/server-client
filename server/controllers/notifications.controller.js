@@ -10,7 +10,7 @@ const GetNotifications = async (req, res) => {
         }
 
         res.status(200).json({
-            notifications: notifications
+            notifications
         })
     }
     catch (err) {

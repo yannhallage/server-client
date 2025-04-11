@@ -16,10 +16,8 @@ const ScrollAreaDemo = () => {
 
     const socket = io('http://localhost:3000', { withCredentials: true });
 
-    // Ajouter un nouvel utilisateur reçu en temps réel
     socket.on('newUser', (personnel) => {
-      // Vérifier si l'utilisateur est déjà présent
-      
+
       setApiData((prev) => {
         if (!prev.some((item) => item.matricule === personnel.matricule)) {
           return [...prev, personnel];
@@ -29,7 +27,6 @@ const ScrollAreaDemo = () => {
 
     });
 
-    // Charger les utilisateurs via l'API GET
     axios.get('http://localhost:3000/api/personnel')
       .then((response) => {
         setApiData(response.data.personnels); // Assurez-vous que c'est la structure correcte
@@ -40,7 +37,6 @@ const ScrollAreaDemo = () => {
         setLoaderData(false);
       });
 
-    // Nettoyer la connexion WebSocket lors du démontage du composant
     return () => {
       socket.disconnect();
     };

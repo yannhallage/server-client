@@ -6,7 +6,7 @@ import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 
 const Notifications = () => {
-  const [notification, setNotification] = useState([]);
+  const [apinotif, setApinotif] = useState([]);
   const [loaderNotif, setLoaderNotif] = useState(true)
   const [notifLength, setNotifLength] = useState(0)
 
@@ -14,21 +14,18 @@ const Notifications = () => {
     const socket = io('http://localhost:3000', { withCredentials: true });
 
     socket.on('newNotification', (notification) => {
-
-      setNotification((prev) => {
-        if (!prev.some((item) => item.id == notification.id)) {
-          return setNotification([...prev, notification])
+      setApinotif((prev) => {
+        if(!prev.some((item) => item._id === notification._id)){
+          return [...prev , notification]
         }
-        else {
-          return prev
-        }
-      })
+        return prev
+      });
     });
 
     // Fetch initial
     axios.get('http://localhost:3000/api/notification')
       .then(response => {
-        setNotification(response.data.notifications);
+        setApinotif(response.data.notifications);
         setLoaderNotif(false);
       })
       .catch((error) => {
@@ -36,17 +33,18 @@ const Notifications = () => {
         setLoaderNotif(false);
       });
 
-    // Cleanup socket à la destruction
+
     return () => {
       socket.disconnect();
     };
   }, []);
 
   useEffect(() => {
-    if (notification) {
-      setNotifLength(notification.length)
+    if (apinotif) {
+      setNotifLength(apinotif.length)
     }
-  }, [notification]);
+  }, [apinotif]);
+
   return (
     <ScrollArea className="h-72 w-full rounded-md border">
       <div className="p-4">
@@ -54,8 +52,8 @@ const Notifications = () => {
         {
           loaderNotif ? (
             <div className="text-center text-sm text-muted-foreground">Chargement en cours...</div>
-          ) : Array.isArray(notification) && notification.length > 0 ? (
-            notification.map((notif, index) => (
+          ) : Array.isArray(apinotif) && apinotif.length > 0 ? (
+            apinotif.map((notif, index) => (
               <div key={index}>
                 <div className="text-sm flex justify-between items-center">
                   <span className="mr-2">{notif.message}</span>
