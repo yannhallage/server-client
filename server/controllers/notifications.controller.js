@@ -23,7 +23,9 @@ const PostNotification = async (req, res) => {
         // const { message } = req.body
         const notification = await Notifications.create(req.body)
         const io = req.app.get('io')
-
+        if (notification){
+            console.log(notification)
+        }
         io.emit("newNotification", notification);
 
         res.status(200).json({ message: 'notification créée avec succès', notification })

@@ -1,10 +1,6 @@
 import * as React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import TooltipDemo from "./TooltipDemo";
-import DialogDemo from "./DialogDemo";
-import AlertDialogDemo from "./AlertDialogDemo";
-import { Context } from "../context/apiContext";
 import { io } from 'socket.io-client';
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
@@ -16,17 +12,19 @@ const Notifications = () => {
 
   useEffect(() => {
     const socket = io('http://localhost:3000', { withCredentials: true });
-  
+
     socket.on('newNotification', (notification) => {
+
       setNotification((prev) => {
-        const alreadyExists = prev.some((item) => item.message === notification.message);
-        if (!alreadyExists) {
-          return [...prev, notification];
+        if (!prev.some((item) => item.id == notification.id)) {
+          return setNotification([...prev, notification])
         }
-        return prev;
-      });
+        else {
+          return prev
+        }
+      })
     });
-  
+
     // Fetch initial
     axios.get('http://localhost:3000/api/notification')
       .then(response => {
@@ -37,13 +35,13 @@ const Notifications = () => {
         console.log("Erreur lors du chargement des données :", error);
         setLoaderNotif(false);
       });
-  
+
     // Cleanup socket à la destruction
     return () => {
       socket.disconnect();
     };
   }, []);
-  
+
   useEffect(() => {
     if (notification) {
       setNotifLength(notification.length)

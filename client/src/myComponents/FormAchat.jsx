@@ -15,7 +15,6 @@ import axios from "axios";
 const FormAchat = () => {
     const { addAchat, achats } = useContext(Context);
     const [variableAdd, setVariableAdd] = useState(0)
-
     const [placeholder] = useState({
         name: "Nom et prenom",
         email: "address mail",
@@ -58,7 +57,13 @@ const FormAchat = () => {
             matricule: values.matricule
         };
 
+        Post_personnel(valeurEnvoyers);
+        Post_notification();
 
+    };
+
+
+    const Post_personnel = async (valeurEnvoyers) => {
         // post sur personnal
         try {
             const response = await axios.post('http://localhost:3000/api/personnel', valeurEnvoyers)
@@ -80,21 +85,20 @@ const FormAchat = () => {
         catch (error) {
             console.error("Erreur lors de l'insertion des données:", error);
         }
-
+    }
+    const Post_notification = async () => {
         // post sur notification
         try {
 
             const response = await axios.post('http://localhost:3000/api/notification', {
                 message: "vous avez crée un utilisateur !"
             });
-            // console.log("Donnée insérée avec succès:", response.data);
+            console.log("Donnée insérée avec succès:", response.data);
 
         } catch (error) {
             console.error("Erreur lors de l'insertion des données:", error);
         }
-    };
-
-
+    }
     // vider les champs
     const EmptyFields = () => {
         const values = Object.keys(placeholder).reduce((acc, key) => {

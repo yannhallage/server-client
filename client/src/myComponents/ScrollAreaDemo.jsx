@@ -19,13 +19,14 @@ const ScrollAreaDemo = () => {
     // Ajouter un nouvel utilisateur reçu en temps réel
     socket.on('newUser', (personnel) => {
       // Vérifier si l'utilisateur est déjà présent
+      
       setApiData((prev) => {
         if (!prev.some((item) => item.matricule === personnel.matricule)) {
           return [...prev, personnel];
         }
         return prev;
       });
-      
+
     });
 
     // Charger les utilisateurs via l'API GET
