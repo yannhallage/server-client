@@ -13,8 +13,6 @@ import Notifications from "./Notification";
 import axios from "axios";
 
 const FormAchat = () => {
-    const { addAchat, achats } = useContext(Context);
-    const [variableAdd, setVariableAdd] = useState(0)
     const [placeholder] = useState({
         name: "Nom et prenom",
         email: "address mail",

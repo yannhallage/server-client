@@ -37,6 +37,7 @@ const GetPersonnels = async (req, res) => {
         res.status(200).json({
             personnels
         })
+
     } catch (erro) {
         res.status(500).json({
             message: "une erreur est survenue lors de la recuperation des personnels"

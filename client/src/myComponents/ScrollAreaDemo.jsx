@@ -1,24 +1,32 @@
 import * as React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import TooltipDemo from "./TooltipDemo";
+
 import DialogDemo from "./DialogDemo";
 import AlertDialogDemo from "./AlertDialogDemo";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { io } from 'socket.io-client';
 import axios from "axios";
+import { Context } from "../context/apiContext";
 
 const ScrollAreaDemo = () => {
-  const [apiData, setApiData] = useState([]);
-  const [loaderData, setLoaderData] = useState(true);
+  const { apiglobaldata, setapiglobaldata
+  } = useContext(Context)
 
+  const [loaderData, setLoaderData] = useState(true);
+  const [indice , setIndice] = useState(null)
+
+  useEffect(() =>{
+    console.log(indice)
+  }, [indice])
+  
   useEffect(() => {
 
     const socket = io('http://localhost:3000', { withCredentials: true });
 
     socket.on('newUser', (personnel) => {
 
-      setApiData((prev) => {
+      setapiglobaldata((prev) => {
         if (!prev.some((item) => item.matricule === personnel.matricule)) {
           return [...prev, personnel];
         }
@@ -29,7 +37,7 @@ const ScrollAreaDemo = () => {
 
     axios.get('http://localhost:3000/api/personnel')
       .then((response) => {
-        setApiData(response.data.personnels); // Assurez-vous que c'est la structure correcte
+        setapiglobaldata(response.data.personnels); // Assurez-vous que c'est la structure correcte
         setLoaderData(false);
       })
       .catch((error) => {
@@ -50,15 +58,17 @@ const ScrollAreaDemo = () => {
         {
           loaderData ? (
             <div className="text-center text-sm text-muted-foreground">Chargement en cours...</div>
-          ) : Array.isArray(apiData) && apiData.length > 0 ? (
-            apiData.map((tag, index) => (
+          ) : Array.isArray(apiglobaldata) && apiglobaldata.length > 0 ? (
+            apiglobaldata.map((tag, index) => (
               <div key={index}>
                 <div className="text-sm flex justify-between items-center">
                   <span className="mr-2">{tag.name}</span>
                   <span className="mr-2">{tag.matricule}</span>
                   <span className="mr-2">{tag.email}</span>
                   <div className="flex space-x-2">
-                    <DialogDemo />
+                    <DialogDemo 
+                      event={()=>{setIndice(index)}}
+                    />
                     <AlertDialogDemo />
                   </div>
                 </div>

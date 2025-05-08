@@ -1,19 +1,13 @@
-import { useContext, useState } from 'react'
-import { Button } from '@/components/ui/button.tsx'
+
 // import './App.css'
-import AlertDialogDemo from './myComponents/AlertDialogDemo'
-import FormAchat from './myComponents/FormAchat'
-import AvatarDemo from './myComponents/AvatarDemo'
-import { SheetDemo } from './myComponents/SheetDemo'
-import PopoverDemo from './myComponents/PopoverDemo'
 import { Context } from './context/apiContext'
+import FormAchat from './myComponents/FormAchat'
+import PopoverDemo from './myComponents/PopoverDemo'
+import { useState } from 'react'
 
 function App() {
-
-  const [apiData, setApiData] = useState([])
-  const [produitAdditionner, setProduitAdditionner] = useState(0)
-  const [nombreDeProduit, setNombreDeProduit] = useState(0)
-  const [totalAchat, setTotalAchat] = useState(0)
+  const [apiglobaldata, setapiglobaldata] = useState([])
+  const [indice ,setIndice] = useState(null)
   return (
     <>
       <header className='border shadow-md'>
@@ -28,16 +22,14 @@ function App() {
           </span>
         </div>
       </header>
-      <Context.Provider value={{
-        apiData, setApiData, produitAdditionner,
-        setProduitAdditionner, nombreDeProduit, setNombreDeProduit,
-        totalAchat, setTotalAchat
-      }}>
-
-        <main className=' mt-11'>
+      <main className=' mt-11'>
+        <Context.Provider value={{
+          apiglobaldata,
+          setapiglobaldata
+        }}>
           <FormAchat />
-        </main>
-      </Context.Provider>
+        </Context.Provider>
+      </main>
     </>
   )
 }
