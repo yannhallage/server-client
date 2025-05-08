@@ -4,6 +4,7 @@ import {
   DialogContent,
   DialogDescription,
   DialogFooter,
+  DialogClose,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -91,7 +92,9 @@ const DialogDemo = ({ event }) => {
           </div>
         </div>
         <DialogFooter>
-          <Button type="button" onClick={Enregistrer}>Enregistrer</Button>
+          <DialogClose asChild>
+            <Button type="button" onClick={Enregistrer}>Enregistrer</Button>
+          </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
