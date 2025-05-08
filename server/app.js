@@ -13,7 +13,7 @@ app.use(cors({
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
- 
+
 app.use('/api/personnel', route)
 
 app.use('/api/notification', route_notifications)

@@ -2,7 +2,7 @@ import * as React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { io } from 'socket.io-client';
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Notifications = () => {
@@ -22,7 +22,6 @@ const Notifications = () => {
       });
     });
 
-    // Fetch initial
     axios.get('http://localhost:3000/api/notification')
       .then(response => {
         setApinotif(response.data.notifications);

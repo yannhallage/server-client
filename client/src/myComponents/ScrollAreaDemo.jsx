@@ -10,16 +10,16 @@ import axios from "axios";
 import { Context } from "../context/apiContext";
 
 const ScrollAreaDemo = () => {
-  const { apiglobaldata, setapiglobaldata
+  const { apiglobaldata, setapiglobaldata,
+    indice, setIndice
   } = useContext(Context)
 
   const [loaderData, setLoaderData] = useState(true);
-  const [indice , setIndice] = useState(null)
 
-  useEffect(() =>{
+  useEffect(() => {
     console.log(indice)
   }, [indice])
-  
+
   useEffect(() => {
 
     const socket = io('http://localhost:3000', { withCredentials: true });
@@ -66,8 +66,8 @@ const ScrollAreaDemo = () => {
                   <span className="mr-2">{tag.matricule}</span>
                   <span className="mr-2">{tag.email}</span>
                   <div className="flex space-x-2">
-                    <DialogDemo 
-                      event={()=>{setIndice(index)}}
+                    <DialogDemo
+                      event={() => { setIndice(index) }}
                     />
                     <AlertDialogDemo />
                   </div>

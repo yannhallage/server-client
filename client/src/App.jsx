@@ -25,7 +25,8 @@ function App() {
       <main className=' mt-11'>
         <Context.Provider value={{
           apiglobaldata,
-          setapiglobaldata
+          setapiglobaldata,
+          indice ,setIndice
         }}>
           <FormAchat />
         </Context.Provider>

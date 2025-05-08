@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input.tsx";
 import ScrollAreaDemo from "./ScrollAreaDemo";
 import CardWithForm from "./cardWithForm";
 import { Button } from "@/components/ui/button.tsx";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Toaster from '@/components/ui/toaster.tsx'
 import { Context } from '../context/apiContext'
 import Notifications from "./Notification";
