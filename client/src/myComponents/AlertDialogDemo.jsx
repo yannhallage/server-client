@@ -13,7 +13,7 @@ import {
 // import { Button } from "@/components/ui/button"
 import Toaster from '@/components/ui/toaster.tsx'
 import { Context } from "../context/apiContext";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState} from "react";
 import axios from "axios"
 
 
@@ -22,7 +22,8 @@ const AlertDialogDemo = ({ event }) => {
         indice
     } = useContext(Context)
     const updatedData = apiglobaldata?.[indice]
-
+    const { toast } = useToast()
+    const [afficheToats, setAfficheToats] = useState(false)
 
     useEffect(() => {
         if (updatedData) {
@@ -45,6 +46,12 @@ const AlertDialogDemo = ({ event }) => {
     const updataApiglobaldata = () => {
         const result = apiglobaldata.filter((item) => item._id != updatedData._id);
         setapiglobaldata(result);
+        setAfficheToats(true);
+        console.log(afficheToats)
+        toast({
+            variant: "destructive",
+            description: "Vous avez effectuer une suppression",
+        });
     }
     return (
         <AlertDialog>
