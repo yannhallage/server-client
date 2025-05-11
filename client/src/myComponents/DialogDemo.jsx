@@ -1,3 +1,4 @@
+import { useToast } from "@/hooks/use-toast.ts"
 import { Button } from "@/components/ui/button.tsx"
 import {
   Dialog,
@@ -13,11 +14,14 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useContext, useEffect, useState } from "react"
 import { Context } from "../context/apiContext"
+import Toaster from '@/components/ui/toaster.tsx'
+import axios from "axios"
 
 const DialogDemo = ({ event }) => {
   const { apiglobaldata, setapiglobaldata, indice } = useContext(Context);
   const userData = apiglobaldata?.[indice];
-
+  const { toast } = useToast()
+  const [afficheToats,setAfficheToats] = useState(false)
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
@@ -40,14 +44,31 @@ const DialogDemo = ({ event }) => {
     setapiglobaldata(updatedData);
     console.log('Saved data:', updatedData);
 
-    SendDataWithDb(updatedData)
+    let data_Sending = {
+      name: name,
+      email: email,
+    }
+    SendDataWithDb(data_Sending)
   };
 
 
-  const SendDataWithDb = (donnee) =>{
-    if (donnee){
-      console.log(donnee)
+  const SendDataWithDb = (dataSend) => {
+    if (dataSend) {
+      console.log(dataSend)
+
+      axios.put(`http://localhost:3000/api/personnel/${userData._id}`, dataSend)
+        .then((response) => {
+          console.log(response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
+    setAfficheToats(true);
+    toast({
+      variant: "destructive",
+      description: "Vous avez effectuer une modification",
+    });
   }
   return (
     <Dialog>
