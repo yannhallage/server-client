@@ -39,9 +39,16 @@ const DialogDemo = ({ event }) => {
 
     setapiglobaldata(updatedData);
     console.log('Saved data:', updatedData);
+
+    SendDataWithDb(updatedData)
   };
 
 
+  const SendDataWithDb = (donnee) =>{
+    if (donnee){
+      console.log(donnee)
+    }
+  }
   return (
     <Dialog>
       <DialogTrigger asChild>

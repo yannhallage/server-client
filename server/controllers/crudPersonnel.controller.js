@@ -72,7 +72,7 @@ const DeletePersonnel = async (req, res) => {
     try {
         const { id } = req.params
         const personnel = await Personnels.findByIdAndDelete(id)
-
+        
         if (!personnel) {
             return res.status(404).json({
                 message: "le personnel n'existe pas"
