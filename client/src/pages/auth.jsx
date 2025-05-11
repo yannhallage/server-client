@@ -1,9 +1,20 @@
 import { Input } from "@/components/ui/input"
-import { Separator } from "@/components/ui/separator"
+
 import { Button } from "@/components/ui/button"
+import { useState } from "react"
 
 
 const Authentification = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const verifyData = () => {
+        if (email === '' || password === '') {
+            return console.log('Please fill all the fields')
+        } else {
+            return console.log(true)
+        }
+    }
     return (
         <div className="flex justify-center items-center h-screen">
             <div className="space-y-5 border p-5">
@@ -15,21 +26,25 @@ const Authentification = () => {
                 {/*  */}
 
                 <div className="space-y-2">
-                    <Input 
+                    <Input
                         placeholder="email"
+                        value={email}
+                        onChange={(e) => { setEmail(e.target.value) }}
                     />
-                    <Input 
+                    <Input
                         placeholder="password"
+                        onChange={(e) => { setPassword(e.target.value) }}
+                        value={password}
                     />
                 </div>
-                
+
                 {/*  */}
                 <div className="float-end">
-                    <Button>
+                    <Button onClick={verifyData}>
                         Login
                     </Button>
                 </div>
-                
+
             </div>
         </div>
     )
