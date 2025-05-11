@@ -14,7 +14,7 @@ const PopoverDemo = ()=> {
         <Button variant="outline">Se deconnecter</Button>
       </PopoverTrigger>
       <PopoverContent className="w-80">
-        <div className="grid gap-4">
+        {/* <div className="grid gap-4">
           <div className="space-y-2">
             <h4 className="font-medium leading-none">Dimensions</h4>
             <p className="text-sm text-muted-foreground">
@@ -55,7 +55,11 @@ const PopoverDemo = ()=> {
               />
             </div>
           </div>
-        </div>
+        </div> */}
+
+        <span className="text-[#ccc]">
+          just a simple description
+        </span>
       </PopoverContent>
     </Popover>
   )
