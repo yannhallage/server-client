@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Link } from "react-router";
 import { useState } from "react"
 
+import axios from "axios";
 
 const Authentification = () => {
     const [matricule, setmatricule] = useState('')
@@ -25,6 +26,14 @@ const Authentification = () => {
     }
     const SendDataOnServer = (dataVerify) => {
         console.log(dataVerify)
+
+        axios.post('http://localhost:3000/api/authentification', dataVerify)
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log("une erreur au niveau de l'auth : ", error)
+            })
     }
     return (
         <div className="flex justify-center items-center h-screen">
