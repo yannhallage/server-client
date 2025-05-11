@@ -1,20 +1,22 @@
 import { Input } from "@/components/ui/input"
+import { Separator } from '@/components/ui/separator'
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
+import { Link } from "react-router";
 import { useState } from "react"
 
 
 const Authentification = () => {
     const [matricule, setmatricule] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setemail] = useState('')
 
     const verifyData = () => {
-        if (matricule === '' || password === '') {
+        if (matricule === '' || email === '') {
             return console.log('Please fill all the fields')
         } else {
             let dataVerify = {
                 matricule: matricule,
-                password: password
+                email: email
             }
 
             return SendDataOnServer(dataVerify)
@@ -41,21 +43,28 @@ const Authentification = () => {
                         onChange={(e) => { setmatricule(e.target.value) }}
                     />
                     <Input
-                        placeholder="password"
-                        onChange={(e) => { setPassword(e.target.value) }}
-                        value={password}
+                        placeholder="email"
+                        onChange={(e) => { setemail(e.target.value) }}
+                        value={email}
                     />
                 </div>
 
                 {/*  */}
-                <div className="float-end">
-                    <Button onClick={verifyData}>
-                        Login
+                <div className="space-x-2">
+                    <Button className="float-end" onClick={verifyData}>
+                        <span>
+                            Login
+                        </span>
                     </Button>
+                    <span className="">
+                        <span className="cursor-pointer text-blue-400" onClick={() => { console.log('tetet') }}>
+                            {/* <Link to='/create'>Signup</Link> */}
+                        </span>
+                    </span>
                 </div>
-
             </div>
         </div>
+
     )
 }
 
