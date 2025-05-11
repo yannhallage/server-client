@@ -9,7 +9,7 @@ import {
 
 const PopoverDemo = ()=> {
   return (
-    <Popover>
+    <Popover> 
       <PopoverTrigger asChild>
         <Button variant="outline">Se deconnecter</Button>
       </PopoverTrigger>
