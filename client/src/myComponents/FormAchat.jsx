@@ -93,7 +93,7 @@ const FormAchat = () => {
             });
             console.log("Donnée insérée avec succès:", response.data);
 
-        } catch (error) {
+        } catch (error) {w
             console.error("Erreur lors de l'insertion des données:", error);
         }
     }
