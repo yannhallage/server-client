@@ -29,6 +29,7 @@ const DialogDemo = ({ event }) => {
     if (userData) {
       setName(userData.name || '');
       setEmail(userData.email || '');
+      console.log(afficheToats)
     }
   }, [userData]);
 

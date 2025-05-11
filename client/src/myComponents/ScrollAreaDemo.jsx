@@ -69,7 +69,9 @@ const ScrollAreaDemo = () => {
                     <DialogDemo
                       event={() => { setIndice(index) }}
                     />
-                    <AlertDialogDemo />
+                    <AlertDialogDemo
+                      event={() => { setIndice(index) }}
+                    />
                   </div>
                 </div>
                 <Separator className="my-2" />
