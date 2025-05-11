@@ -1,4 +1,5 @@
-const Account = require('../models/personnel.model')
+const Account = require('../models/personnel.model');
+const jwt = require('jsonwebtoken');
 
 
 const PostAutthentification = async (req, res) => {
@@ -8,11 +9,17 @@ const PostAutthentification = async (req, res) => {
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' })
-        } else {
-            res.status(200).json({
-                message: 'utilisateur trouver ',matricule
-            })
         }
+        // Générer un token
+        const token = jwt.sign(
+            { matricule: user.matricule, email: user.email }, // données à encoder
+            'votre_cle_secrete_super_secrete',
+            { expiresIn: '1h' } // expiration (1 heure)
+        );
+        res.status(200).json({
+            message: 'Utilisateur trouvé',
+            token,  // on retourne le token au client
+        });
     }
     catch (error) {
         console.error("Erreur lors de la verification:", error)
