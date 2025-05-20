@@ -1,13 +1,15 @@
 import { Input } from "@/components/ui/input"
 import { Separator } from '@/components/ui/separator'
 import { Label } from "@/components/ui/label"
+
 import { Button } from "@/components/ui/button"
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useState } from "react"
 
 import axios from "axios";
 
 const Authentification = () => {
+    const navigate = useNavigate();
     const [matricule, setmatricule] = useState('')
     const [email, setemail] = useState('')
 
@@ -30,6 +32,11 @@ const Authentification = () => {
         axios.post('http://localhost:3000/api/authentification', dataVerify)
             .then(response => {
                 console.log(response.data)
+                // utilsation du token creer si est valider par la bd 
+                const { token } = response.data
+
+                localStorage.setItem('token', token);
+                navigate('/home');
             })
             .catch(error => {
                 console.log("une erreur au niveau de l'auth : ", error)
