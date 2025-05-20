@@ -11,7 +11,7 @@ const Component_Router = () => {
         <>
             <Router>
                 <Routes>
-                    <Route path="/" element={<Authentification />} />
+                    <Route path="/" element={< Authentification/>} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/create" element={<Signup />} />
                     <Route path="*" element={<Notfound />} />
