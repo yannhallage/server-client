@@ -37,7 +37,7 @@ const Authentification = () => {
     }
     return (
         <div className="flex justify-center items-center h-screen">
-            <div className="space-y-5 border p-5">
+            <div className="space-y-5 border  rounded-sm p-5">
                 <div className="text-center text-xl">
                     <Label>
                         Authentification

@@ -1,4 +1,5 @@
 const express = require('express')
+const verifyToken  = require('../middelware/auth.middleware')
 const route = express.Router()
 const {
     GetPersonnel,
@@ -12,7 +13,7 @@ const {
 
 
 // cas d'un get 
-route.get('/', GetPersonnels)
+route.get('/', verifyToken, GetPersonnels)
 
 // recuperation en fonction de l'id 
 route.get('/:id', GetPersonnel)

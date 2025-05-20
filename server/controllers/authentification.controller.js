@@ -1,3 +1,4 @@
+require('dotenv').config();
 const Account = require('../models/personnel.model');
 const jwt = require('jsonwebtoken');
 
@@ -13,7 +14,7 @@ const PostAutthentification = async (req, res) => {
         // Générer un token
         const token = jwt.sign(
             { matricule: user.matricule, email: user.email }, // données à encoder
-            'votre_cle_secrete_super_secrete',
+            process.env.JWT_SECRET,
             { expiresIn: '1h' } // expiration (1 heure)
         );
         res.status(200).json({

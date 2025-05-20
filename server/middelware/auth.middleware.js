@@ -1,3 +1,4 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
@@ -7,7 +8,7 @@ const verifyToken = (req, res, next) => {
     return res.status(403).json({ message: 'Aucun token fourni' });
   }
 
-  jwt.verify(token, 'votre_cle_secrete_super_secrete', (err, decoded) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       return res.status(401).json({ message: 'Token invalide' });
     }
