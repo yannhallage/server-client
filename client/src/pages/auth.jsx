@@ -36,7 +36,7 @@ const Authentification = () => {
                 const { token } = response.data
 
                 localStorage.setItem('token', token);
-                navigate('/home');
+                // navigate('/home');
             })
             .catch(error => {
                 console.log("une erreur au niveau de l'auth : ", error)

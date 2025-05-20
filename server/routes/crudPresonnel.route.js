@@ -16,19 +16,19 @@ const {
 route.get('/', verifyToken, GetPersonnels)
 
 // recuperation en fonction de l'id 
-route.get('/:id', GetPersonnel)
+route.get('/:id',  verifyToken,GetPersonnel)
 
 // // dans le cas d'une creation 
-route.post('/',PostPersonnel)
+route.post('/', verifyToken,PostPersonnel)
 
 // // dans le cas d'une mise a jour
-route.put('/:id',UpdatePersonnel)
+route.put('/:id', verifyToken,UpdatePersonnel)
 
 // // dans le cas d'une suppression
-route.delete('/:id',DeletePersonnel)
+route.delete('/:id', verifyToken,DeletePersonnel)
 
 // cas de suppression all data
-route.delete('/',DeletAllPersonnel)
+route.delete('/', verifyToken,DeletAllPersonnel)
 
 
 

@@ -21,7 +21,7 @@ const DialogDemo = ({ event }) => {
   const { apiglobaldata, setapiglobaldata, indice } = useContext(Context);
   const userData = apiglobaldata?.[indice];
   const { toast } = useToast()
-  const [afficheToats,setAfficheToats] = useState(false)
+  const [afficheToats, setAfficheToats] = useState(false)
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
@@ -57,7 +57,11 @@ const DialogDemo = ({ event }) => {
     if (dataSend) {
       console.log(dataSend)
 
-      axios.put(`http://localhost:3000/api/personnel/${userData._id}`, dataSend)
+      axios.put(`http://localhost:3000/api/personnel/${userData._id}`, dataSend, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
         .then((response) => {
           console.log(response.data)
         })

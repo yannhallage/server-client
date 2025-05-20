@@ -15,14 +15,18 @@ const Notifications = () => {
 
     socket.on('newNotification', (notification) => {
       setApinotif((prev) => {
-        if(!prev.some((item) => item._id === notification._id)){
-          return [...prev , notification]
+        if (!prev.some((item) => item._id === notification._id)) {
+          return [...prev, notification]
         }
         return prev
       });
     });
 
-    axios.get('http://localhost:3000/api/notification')
+    axios.get('http://localhost:3000/api/notification', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then(response => {
         setApinotif(response.data.notifications);
         setLoaderNotif(false);

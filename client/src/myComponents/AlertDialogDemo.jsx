@@ -13,7 +13,7 @@ import {
 // import { Button } from "@/components/ui/button"
 import Toaster from '@/components/ui/toaster.tsx'
 import { Context } from "../context/apiContext";
-import { useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios"
 
 
@@ -33,7 +33,11 @@ const AlertDialogDemo = ({ event }) => {
 
 
     const DeletedData = () => {
-        axios.delete(`http://localhost:3000/api/personnel/${updatedData._id}`)
+        axios.delete(`http://localhost:3000/api/personnel/${updatedData._id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
             .then((response) => {
                 console.log(response.data);
             })

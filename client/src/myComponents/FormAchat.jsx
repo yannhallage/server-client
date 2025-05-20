@@ -64,7 +64,11 @@ const FormAchat = () => {
     const Post_personnel = async (valeurEnvoyers) => {
         // post sur personnal
         try {
-            const response = await axios.post('http://localhost:3000/api/personnel', valeurEnvoyers)
+            const response = await axios.post('http://localhost:3000/api/personnel', valeurEnvoyers , {
+                headers : {
+                    Authorization : `Bearer ${localStorage.getItem('token')}`
+                }
+            })
 
             console.log("Donnée insérée avec succès:", response.data);
 
@@ -90,10 +94,14 @@ const FormAchat = () => {
 
             const response = await axios.post('http://localhost:3000/api/notification', {
                 message: "vous avez crée un utilisateur !"
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
             });
             console.log("Donnée insérée avec succès:", response.data);
 
-        } catch (error) {w
+        } catch (error) {
             console.error("Erreur lors de l'insertion des données:", error);
         }
     }

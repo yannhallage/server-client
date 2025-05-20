@@ -21,7 +21,7 @@ const ScrollAreaDemo = () => {
   }, [indice])
 
   useEffect(() => {
-
+    console.log(localStorage.getItem('token'))
     const socket = io('http://localhost:3000', { withCredentials: true });
 
     socket.on('newUser', (personnel) => {
@@ -35,19 +35,19 @@ const ScrollAreaDemo = () => {
 
     });
 
-    axios.get('http://localhost:3000/api/personnel')
+    axios.get('http://localhost:3000/api/personnel', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then((response) => {
-        setapiglobaldata(response.data.personnels); // Assurez-vous que c'est la structure correcte
+        setapiglobaldata(response.data.personnels); // OK si c'est bien la structure de retour
         setLoaderData(false);
       })
       .catch((error) => {
         console.log("Erreur lors du chargement des données :", error);
         setLoaderData(false);
       });
-
-    return () => {
-      socket.disconnect();
-    };
 
   }, []);
 

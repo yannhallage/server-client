@@ -2,7 +2,8 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
-  const token = req.headers['authorization']; // On récupère le token dans l'en-tête
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1]; // "Bearer token"
 
   if (!token) {
     return res.status(403).json({ message: 'Aucun token fourni' });
