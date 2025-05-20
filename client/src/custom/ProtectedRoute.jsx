@@ -1,7 +1,7 @@
 // ProtectedRoute.js
 import { jwtDecode } from 'jwt-decode';
-import { Navigate } from 'react-router-dom';
 
+import { Navigate } from 'react-router-dom';
 
 const isTokensValid = (token) => {
     try {
@@ -18,10 +18,17 @@ const ProtectedRoute = ({ children }) => {
 
     if (!token || !isTokensValid(token)) {
         return <Navigate to="/" replace />;
+    } else {
+        <Navigate to="/home" />
     }
-
+    
     return children;
+
+    
 }
+
+
+
 
 
 export default ProtectedRoute

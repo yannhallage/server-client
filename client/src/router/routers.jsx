@@ -1,10 +1,12 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Authentification from "../pages/auth";
 import Home from "../pages/home";
 import ProtectedRoute from '../custom/ProtectedRoute'
 import Signup from "../pages/signup";
 import Notfound from "../pages/notfound"
+import RedirectIfAuth from "../custom/RedirectIfAuth";
 
 
 const Component_Router = () => {
@@ -13,7 +15,9 @@ const Component_Router = () => {
             <Router>
                 <Routes>
                     <Route path="/" element={
-                        <Authentification />
+                        <RedirectIfAuth>
+                            <Authentification />
+                        </RedirectIfAuth>   
                     } />
                     <Route path="/home" element={
                         <ProtectedRoute >

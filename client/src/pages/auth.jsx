@@ -1,4 +1,5 @@
 import { Input } from "@/components/ui/input"
+// import { TokenVerify } from '../custom/tokenVerify'
 import { Separator } from '@/components/ui/separator'
 import { Label } from "@/components/ui/label"
 
@@ -36,12 +37,13 @@ const Authentification = () => {
                 const { token } = response.data
 
                 localStorage.setItem('token', token);
-                // navigate('/home');
+                navigate('/home');
             })
             .catch(error => {
                 console.log("une erreur au niveau de l'auth : ", error)
             })
     }
+
     return (
         <div className="flex justify-center items-center h-screen">
             <div className="space-y-5 border  rounded-sm p-5">
