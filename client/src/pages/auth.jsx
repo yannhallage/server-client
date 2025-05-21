@@ -14,6 +14,7 @@ const Authentification = () => {
     const [matricule, setmatricule] = useState('')
     const [email, setemail] = useState('')
 
+    
     const verifyData = () => {
         if (matricule === '' || email === '') {
             return console.log('Please fill all the fields')
@@ -41,6 +42,7 @@ const Authentification = () => {
             })
             .catch(error => {
                 console.log("une erreur au niveau de l'auth : ", error)
+                
             })
     }
 
@@ -69,7 +71,7 @@ const Authentification = () => {
 
                 {/*  */}
                 <div className="space-x-2">
-                    <Button className="float-end" onClick={verifyData}>
+                    <Button className="float-end" onClick={verifyData} >
                         <span>
                             Login
                         </span>
